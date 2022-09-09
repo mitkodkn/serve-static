@@ -59,7 +59,12 @@ export class FastifyLoader extends AbstractLoader {
             options.serveStaticOptions.setHeaders
           ) {
             const stat = fs.statSync(indexFilePath);
-            options.serveStaticOptions.setHeaders(res, indexFilePath, stat);
+            options.serveStaticOptions.setHeaders(
+              req,
+              res,
+              indexFilePath,
+              stat
+            );
           }
           res.type('text/html').send(stream);
         });

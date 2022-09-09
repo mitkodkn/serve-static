@@ -96,7 +96,7 @@ export interface ServeStaticModuleOptions {
      * path the file path that is being sent
      * stat the stat object of the file that is being sent
      */
-    setHeaders?: (res: any, path: string, stat: any) => any;
+    setHeaders?: (req: any, res: any, path: string, stat: any) => any;
   };
 }
 

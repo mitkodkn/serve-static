@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { loadPackage } from '@nestjs/common/utils/load-package.util';
-import * as fs from 'fs';
 import { AbstractHttpAdapter } from '@nestjs/core';
+import * as fs from 'fs';
 import { ServeStaticModuleOptions } from '../interfaces/serve-static-options.interface';
 import {
   DEFAULT_RENDER_PATH,
@@ -21,7 +21,7 @@ export class ExpressLoader extends AbstractLoader {
     const express = loadPackage('express', 'ServeStaticModule', () =>
       require('express')
     );
-    optionsArr.forEach(options => {
+    optionsArr.forEach((options) => {
       options.renderPath = options.renderPath || DEFAULT_RENDER_PATH;
       const clientPath = options.rootPath || DEFAULT_ROOT_PATH;
       const indexFilePath = this.getIndexFilePath(clientPath);
@@ -33,7 +33,12 @@ export class ExpressLoader extends AbstractLoader {
             options.serveStaticOptions.setHeaders
           ) {
             const stat = fs.statSync(indexFilePath);
-            options.serveStaticOptions.setHeaders(res, indexFilePath, stat);
+            options.serveStaticOptions.setHeaders(
+              req,
+              res,
+              indexFilePath,
+              stat
+            );
           }
           res.sendFile(indexFilePath);
         } else {
